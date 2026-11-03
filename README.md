@@ -23,9 +23,9 @@ At the beginning of the README, I want to show three real photos of the prototyp
 
 <table>
   <tr>
-    <td align="center"><img src="images/intro/prototype-overview.jpg" alt="MiniCableLab prototype overview" width="300"><br><sub>Prototype overview</sub></td>
-    <td align="center"><img src="images/intro/test-wires.jpg" alt="MiniCableLab test wires" width="300"><br><sub>Test wires / connections</sub></td>
-    <td align="center"><img src="images/intro/lcd-and-buttons.jpg" alt="MiniCableLab LCD and buttons" width="300"><br><sub>LCD and buttons</sub></td>
+    <td align="center"><img src="images/overview/lcd-button.jpg" alt="MiniCableLab prototype overview" width="300"><br><sub>Prototype overview</sub></td>
+    <td align="center"><img src="images/overview/full-prototype.jpg" alt="MiniCableLab test wires" width="300"><br><sub>Test wires / connections</sub></td>
+    <td align="center"><img src="images/overview/wires.jpg" alt="MiniCableLab LCD and buttons" width="300"><br><sub>LCD and buttons</sub></td>
   </tr>
 </table>
 
