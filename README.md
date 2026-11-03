@@ -12,13 +12,10 @@ I started with a basic continuity test. Then I added a **16x2 LCD**, **two LEDs*
 
 Here are three pictures of the actual build.
 
-![Full MiniCableLab prototype]()
-
 **1. Full prototype** — Arduino, breadboard, LCD, buttons, and LEDs.
 <p align="center">
-  <img src="./images/overview/01-full-prototype.jpg" width="150">
-  <img src="./images/overview/02-lcd-buttons.jpg" width="150">
-  <img src="./images/overview/03-wiring.jpg" width="150">
+  <img src="./images/overview/01-full-prototype.jpg" width="300">
+  <img src="./images/overview/02-lcd-buttons.jpg" width="300">
 </p>
 
 ## What it can do
