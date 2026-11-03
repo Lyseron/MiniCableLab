@@ -1,263 +1,224 @@
 # MiniCableLab
 
-MiniCableLab is a small cable tester I made with an **Arduino Uno**.
+MiniCableLab is a small cable tester I built with an **Arduino Uno**.
 
-The idea is simple: before using a wire in another project, I want to check if it works and see what the problem is if it doesn't.
+The goal is simple: before I use a wire in another project, I want to check if it works and quickly understand what the problem is if it does not.
 
-I started with a basic continuity test. Then I added a **16x2 LCD**, **two LEDs**, and **two buttons** so I can use it without opening the Serial Monitor every time.
+I started with a basic continuity test, then I added:
 
-> **Important:** This tester is for **disconnected, unpowered wires only**. Never connect it to a powered circuit, a battery, or mains electricity.
+- a **16x2 LCD**
+- **2 LEDs**
+- **2 push buttons**
+- a **1-wire mode** and a **2-wire mode**
 
-## My prototype
+So now I can use it like a real small tool, not just a breadboard test.
 
-Here are three pictures of the actual build.
+> **Important:** MiniCableLab is only for **disconnected, unpowered wires**. Do **not** connect it to a powered circuit, a battery, or mains electricity.
 
-**1. Full prototype** — Arduino, breadboard, LCD, buttons, and LEDs.
-<p align="center">
-  <img src="./images/overview/01-full-prototype.jpg" width="300">
-  <img src="./images/overview/02-lcd-buttons.jpg" width="300">
-</p>
+---
+
+## Project overview
+
+At the beginning of the README, I want to show three real photos of the prototype:
+
+<table>
+  <tr>
+    <td align="center"><img src="images/intro/prototype-overview.jpg" alt="MiniCableLab prototype overview" width="300"><br><sub>Prototype overview</sub></td>
+    <td align="center"><img src="images/intro/test-wires.jpg" alt="MiniCableLab test wires" width="300"><br><sub>Test wires / connections</sub></td>
+    <td align="center"><img src="images/intro/lcd-and-buttons.jpg" alt="MiniCableLab LCD and buttons" width="300"><br><sub>LCD and buttons</sub></td>
+  </tr>
+</table>
+
+**Note:** replace these three images with your own real photos using the exact same file names.
+
+---
 
 ## What it can do
 
-There are two modes:
+MiniCableLab has two modes:
 
-- **1 WIRE:** check if one wire has continuity.
-- **2 WIRES:** check two connections and detect different wiring problems.
+- **1 WIRE**: check continuity between **D2** and **D6**
+- **2 WIRES**: check two conductors and detect different wiring faults
 
-The **MODE** button changes the mode. The **TEST** button starts a measurement.
+The **MODE** button changes the mode.
 
-The result stays on the LCD until I change the mode or start another test. A **green LED** means the test passed. A **red LED** means a problem was detected.
+The **TEST** button starts the measurement.
 
-## Components
+The result is shown on:
+
+- the **LCD**
+- the **green LED** if the test is OK
+- the **red LED** if a fault is detected
+
+---
+
+## Main components
 
 - Arduino Uno
 - Breadboard
-- LCD 1602 (16 columns, 2 rows)
-- 2 push buttons (TEST and MODE)
-- 1 green LED and 1 red LED
-- 4 resistors of 1 kΩ: 2 for the LEDs and 2 for the test outputs
-- A current-limiting resistor for the LCD backlight
-- Dupont wires (male-male, male-female, female-female)
+- LCD 1602 (16x2)
+- 2 push buttons (**TEST** and **MODE**)
+- 1 green LED
+- 1 red LED
+- 4 resistors of 1 kΩ
+  - 2 for LED protection
+  - 2 for the test outputs
+- 1 resistor for LCD backlight
+- Dupont wires
 
-## Connections
+---
 
-### Arduino pins
+## Pin configuration
 
-| Pin | Used for |
+| Pin | Function |
 | --- | --- |
-| D2 | First test output, through a 1 kΩ resistor |
-| D3 | Second test output, through a 1 kΩ resistor |
+| D2 | First test output |
+| D3 | Second test output |
 | D6 | First test input (`INPUT_PULLUP`) |
 | D7 | Second test input (`INPUT_PULLUP`) |
-| D5 | Green LED, with its own 1 kΩ resistor |
-| D4 | Red LED, with its own 1 kΩ resistor |
-| D10 | TEST button (other side connected to GND) |
-| D11 | MODE button (other side connected to GND) |
+| D5 | Green LED |
+| D4 | Red LED |
+| D10 | TEST button |
+| D11 | MODE button |
+| D8 | LCD RS |
+| D9 | LCD E |
+| A0 | LCD D4 |
+| A1 | LCD D5 |
+| A2 | LCD D6 |
+| A3 | LCD D7 |
 
-### LCD 1602
+LCD power:
 
-| LCD pin | Arduino pin |
-| --- | --- |
-| VSS | GND |
-| VDD | 5V |
-| VO | GND (fixed contrast for now) |
-| RS | D8 |
-| RW | GND |
-| E | D9 |
-| D4 | A0 |
-| D5 | A1 |
-| D6 | A2 |
-| D7 | A3 |
+- `VSS` → GND
+- `VDD` → 5V
+- `VO` → GND (fixed contrast for now)
+- `RW` → GND
+- LCD backlight through a resistor
 
-LCD pins D0 to D3 are not used. The LCD backlight uses `A` and `K`, with a suitable series resistor on `A`.
+---
 
-## How the test works
+## How it works
 
-I use `D2` and `D3` to send a LOW signal, and `D6` and `D7` to read it.
+MiniCableLab sends a **LOW** signal on one output at a time and checks whether that signal reaches the expected input.
 
-`D6` and `D7` use `INPUT_PULLUP`:
+The inputs use `INPUT_PULLUP`, so:
 
-- **HIGH (1):** no LOW signal was detected.
-- **LOW (0):** a LOW signal reached the input through an electrical connection.
+- **HIGH** means no LOW signal arrived
+- **LOW** means the signal was detected through an electrical path
 
-For two conductors, I test one output at a time, so I can see where each signal goes.
+This lets the program detect:
 
-```text
-D2 --- 1 kΩ --- [wire to test] --- D6
-D3 --- 1 kΩ --- [wire to test] --- D7
-```
+- correct wiring
+- open circuits
+- swapped connections
+- possible short circuits
+- other unexpected cases
 
-The wires being tested are removable. There must not be another permanent connection between the test points, or the result would be wrong.
+---
 
-### What the faults mean
+## Diagnostic visuals
 
-- **Open circuit:** the electrical path is interrupted. It could be a broken wire, an unplugged connector, or a bad contact.
-- **Inverted connections:** the two wires reach the wrong destinations (`D2 → D7`, `D3 → D6`).
-- **Possible short circuit:** a signal reaches points that should be electrically separated, for example if the two conductors touch.
+The following visuals explain each test result.
 
-The tester measures electrical connections, not the physical cause of the problem. So `CUT` means *missing continuity*, not necessarily a wire broken inside. A short-circuit message also means a **possible** short or unexpected electrical path.
+**Important note:** the schematic visuals below were **generated with ChatGPT** based on my MiniCableLab project, to make the README cleaner and easier to read.
 
-## How to use it
+### 01 — Two Wires All Good
 
-1. Unplug the Arduino USB cable before changing the test wiring.
-2. Connect the **unpowered** wire or wires I want to test.
-3. Plug in the Arduino.
-4. Press **MODE** to select `1 WIRE` or `2 WIRES`.
-5. Press **TEST** to check the connection.
-6. Read the LCD message and the status LED.
+Both conductors are correctly connected.
 
-The TEST button does not turn the device off. It just starts another test.
+![Two wires all good](images/diagrams/All_good.png)
 
-## Test results and pictures
+### 02 — Single Wire OK
 
-For each test, I want to show **two real pictures**: the first one shows the wire connections, and the second one shows the LCD message and LED after pressing TEST.
+The wire has continuity between **D2** and **D6**.
 
-### 01. Single wire — All good
+![Single wire OK](images/diagrams/Single_ok.png)
 
-**Mode:** `1 WIRE`  
-**Wiring:** Connect one working wire between D2 and D6.  
-**LCD:** `SINGLE: ALL GOOD`  
-**LED:** Green.  
-**Result:** The wire has continuity.
+### 03 — Single Wire Open
 
-| Wire connections | LCD + status LED |
-| :---: | :---: |
-| ![Wiring for 01. Single wire — All good](images/tests/01-single-ok-wires.jpg) | ![LCD and LED for 01. Single wire — All good](images/tests/01-single-ok-result.jpg) |
+No continuity is detected between **D2** and **D6**.
 
-### 02. Single wire — Open circuit
+![Single wire open](images/diagrams/Single_open.png)
 
-**Mode:** `1 WIRE`  
-**Wiring:** Leave D2 and D6 disconnected, or use a wire with no continuity.  
-**LCD:** `SINGLE: OPEN`  
-**LED:** Red.  
-**Result:** There is no detected connection between D2 and D6.
+### 04 — D2-D6 Cut
 
-| Wire connections | LCD + status LED |
-| :---: | :---: |
-| ![Wiring for 02. Single wire — Open circuit](images/tests/02-single-open-wires.jpg) | ![LCD and LED for 02. Single wire — Open circuit](images/tests/02-single-open-result.jpg) |
+The connection between **D2** and **D6** is open.
 
-### 03. Two wires — All good
+![D2-D6 cut](images/diagrams/D2_D6_Cut.png)
 
-**Mode:** `2 WIRES`  
-**Wiring:** Connect D2 to D6 and D3 to D7.  
-**LCD:** `ALL GOOD !`  
-**LED:** Green.  
-**Result:** Both connections match the expected wiring.
+### 05 — D3-D7 Cut
 
-| Wire connections | LCD + status LED |
-| :---: | :---: |
-| ![Wiring for 03. Two wires — All good](images/tests/03-double-ok-wires.jpg) | ![LCD and LED for 03. Two wires — All good](images/tests/03-double-ok-result.jpg) |
+The connection between **D3** and **D7** is open.
 
-### 04. First wire — Open circuit
+![D3-D7 cut](images/diagrams/D3_d7_Cut.png)
 
-**Mode:** `2 WIRES`  
-**Wiring:** Leave D2 to D6 disconnected, but keep D3 to D7 connected.  
-**LCD:** `D2-D6 CUT`  
-**LED:** Red.  
-**Result:** The first connection has no continuity.
+### 06 — Both Cables Cut
 
-| Wire connections | LCD + status LED |
-| :---: | :---: |
-| ![Wiring for 04. First wire — Open circuit](images/tests/04-d2-d6-open-wires.jpg) | ![LCD and LED for 04. First wire — Open circuit](images/tests/04-d2-d6-open-result.jpg) |
+No continuity is detected on either connection.
 
-### 05. Second wire — Open circuit
+![Both cables cut](images/diagrams/Both_Cut.png)
 
-**Mode:** `2 WIRES`  
-**Wiring:** Keep D2 to D6 connected, but leave D3 to D7 disconnected.  
-**LCD:** `D3-D7 CUT`  
-**LED:** Red.  
-**Result:** The second connection has no continuity.
+### 07 — Inverted Connections
 
-| Wire connections | LCD + status LED |
-| :---: | :---: |
-| ![Wiring for 05. Second wire — Open circuit](images/tests/05-d3-d7-open-wires.jpg) | ![LCD and LED for 05. Second wire — Open circuit](images/tests/05-d3-d7-open-result.jpg) |
+The two conductors are connected to the wrong inputs.
 
-### 06. Both wires — Open circuit
+![Inverted cable](images/diagrams/Inverted.png)
 
-**Mode:** `2 WIRES`  
-**Wiring:** Leave both connections disconnected.  
-**LCD:** `BOTH CABLES CUT`  
-**LED:** Red.  
-**Result:** Neither connection has continuity.
+### 08 — Short Circuit
 
-| Wire connections | LCD + status LED |
-| :---: | :---: |
-| ![Wiring for 06. Both wires — Open circuit](images/tests/06-both-open-wires.jpg) | ![LCD and LED for 06. Both wires — Open circuit](images/tests/06-both-open-result.jpg) |
+An unexpected connection is detected between the two conductors.
 
-### 07. Inverted connections
+![Short circuit](images/diagrams/Short_circuit.png)
 
-**Mode:** `2 WIRES`  
-**Wiring:** Cross the connections: D2 to D7 and D3 to D6.  
-**LCD:** `INVERTED CABLE`  
-**LED:** Red.  
-**Result:** Both wires are connected, but their destinations are swapped.
+### 09 — Other Fault
 
-| Wire connections | LCD + status LED |
-| :---: | :---: |
-| ![Wiring for 07. Inverted connections](images/tests/07-inverted-wires.jpg) | ![LCD and LED for 07. Inverted connections](images/tests/07-inverted-result.jpg) |
+The readings do not match the expected cases.
 
-### 08. Possible short circuit
+![Other fault](images/diagrams/Other_fault.png)
 
-**Mode:** `2 WIRES`  
-**Wiring:** With USB unplugged, connect D2 to D6 and D3 to D7, then add one temporary wire between the D6 and D7 test points. Reconnect power and press TEST.  
-**LCD:** `SHORT CIRCUIT`  
-**LED:** Red.  
-**Result:** The two conductors are no longer isolated. This is a simulated short, not a powered 5V-to-GND short.
+---
 
-| Wire connections | LCD + status LED |
-| :---: | :---: |
-| ![Wiring for 08. Possible short circuit](images/tests/08-short-wires.jpg) | ![LCD and LED for 08. Possible short circuit](images/tests/08-short-result.jpg) |
+## Real demo video
 
-### 09. Other fault (optional)
+- the **MODE** button changing between **1 WIRE** and **2 WIRES**
+- the **TEST** button starting a measurement
+- the LCD updating the result
+- the LEDs changing depending on the result
 
-**Mode:** `2 WIRES`  
-**Wiring:** Only add this example if I can reproduce an unexpected connection safely and reliably.  
-**LCD:** `OTHER FAULT`  
-**LED:** Red.  
-**Result:** The readings do not match the predefined cases.
+---
 
-| Wire connections | LCD + status LED |
-| :---: | :---: |
-| ![Wiring for 09. Other fault (optional)](images/tests/09-other-fault-wires.jpg) | ![LCD and LED for 09. Other fault (optional)](images/tests/09-other-fault-result.jpg) |
-
-## Button demonstration video
-
-Finally, I want to record **one video** showing the two buttons working together: pressing **MODE** to change between `1 WIRE` and `2 WIRES`, then pressing **TEST** to display a result. The video should show the LCD and LEDs clearly.
-
-## Project files
-
-```text
-MiniCableLab/
-├── README.md
-├── MiniCableLab_v1.ino
-└── images/
-    ├── overview/
-    │   ├── 01-full-prototype.jpg
-    │   ├── 02-lcd-buttons.jpg
-    │   └── 03-wiring.jpg
-    └── tests/
-        ├── 01-single-ok-wires.jpg
-        ├── 01-single-ok-result.jpg
-        └── ...                   # Two pictures for every test above
-```
 ## What I learned
 
 This project helped me practice:
 
 - Arduino digital inputs and outputs
-- `INPUT_PULLUP`, `HIGH`, and `LOW`
-- Continuity tests, open circuits, and short circuits
-- Buttons and LCD control
-- Testing real wiring problems instead of guessing what went wrong
+- `INPUT_PULLUP`
+- continuity tests
+- open circuits and possible short circuits
+- LCD display control
+- push buttons and mode selection
+- turning a breadboard prototype into a usable tool
+
+---
 
 ## Next improvements
 
-- Make the test connectors easier to use and label them properly
-- Improve the LCD contrast
-- Add the real pictures and button demo video
-- Make the code easier to extend
-- Test 3, 4 or more conductors later
+- make the test connectors cleaner and easier to use
+- improve the physical case / presentation
+- add support for more conductors later
+- improve the LCD contrast if needed
+- maybe make a more compact version in the future
 
-**Status:** Working breadboard prototype. The two modes, LCD, buttons, and LEDs are working.
+---
 
+## Project status
+
+**Current status:** working breadboard prototype.
+
+MiniCableLab can already:
+
+- test **one wire**
+- test **two wires**
+- display the result on the LCD
+- use a **MODE** button and a **TEST** button
+- indicate the result with green and red LEDs
