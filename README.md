@@ -12,17 +12,14 @@ I started with a basic continuity test. Then I added a **16x2 LCD**, **two LEDs*
 
 Here are three pictures of the actual build.
 
+![Full MiniCableLab prototype]()
+
 **1. Full prototype** — Arduino, breadboard, LCD, buttons, and LEDs.
-
-![Full MiniCableLab prototype](images/overview/01-full-prototype.jpg)
-
-**2. LCD and buttons** — the TEST and MODE buttons with the display.
-
-![MiniCableLab LCD and buttons](images/overview/02-lcd-buttons.jpg)
-
-**3. Wiring and test connectors** — how the wires connect to the test points.
-
-![MiniCableLab wiring and test connectors](images/overview/03-wiring.jpg)
+<p align="center">
+  <img src="./images/overview/01-full-prototype.jpg" width="150">
+  <img src="./images/overview/02-lcd-buttons.jpg" width="150">
+  <img src="./images/overview/03-wiring.jpg" width="150">
+</p>
 
 ## What it can do
 
