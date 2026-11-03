@@ -19,8 +19,6 @@ So now I can use it like a real small tool, not just a breadboard test.
 
 ## Project overview
 
-At the beginning of the README, I want to show three real photos of the prototype:
-
 <table>
   <tr>
     <td align="center"><img src="images/overview/lcd-button.jpg" alt="MiniCableLab LCD and buttons" width="300"><br><sub>LCD and buttons</sub></td>
@@ -29,8 +27,6 @@ At the beginning of the README, I want to show three real photos of the prototyp
     
   </tr>
 </table>
-
-**Note:** replace these three images with your own real photos using the exact same file names.
 
 ---
 
