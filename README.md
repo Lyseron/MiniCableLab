@@ -24,7 +24,7 @@ At the beginning of the README, I want to show three real photos of the prototyp
 <table>
   <tr>
     <td align="center"><img src="images/overview/lcd-button.jpg" alt="MiniCableLab LCD and buttons" width="300"><br><sub>LCD and buttons</sub></td>
-    <td align="center"><img src="images/overview/full-prototype.jpg" alt="MiniCableLab prototype overview" width="300"><br><sub>Prototype overview</sub></td>
+    <td align="center"><img src="images/overview/full_prototype.jpg" alt="MiniCableLab prototype overview" width="300"><br><sub>Prototype overview</sub></td>
     <td align="center"><img src="images/overview/wires.jpg" alt="MiniCableLab test wires" width="300"><br><sub>Test wires / connections</sub></td>
     
   </tr>
@@ -179,15 +179,6 @@ The readings do not match the expected cases.
 
 ---
 
-## Real demo video
-
-- the **MODE** button changing between **1 WIRE** and **2 WIRES**
-- the **TEST** button starting a measurement
-- the LCD updating the result
-- the LEDs changing depending on the result
-
----
-
 ## What I learned
 
 This project helped me practice:
@@ -223,3 +214,16 @@ MiniCableLab can already:
 - display the result on the LCD
 - use a **MODE** button and a **TEST** button
 - indicate the result with green and red LEDs
+
+---
+
+## Real demo video
+
+- the **MODE** button changing between **1 WIRE** and **2 WIRES**
+- the **TEST** button starting a measurement
+- the LCD updating the result
+- the LEDs changing depending on the result
+
+https://github.com/user-attachments/assets/a015ddea-60a1-42a3-85c5-0ec27cc3e250
+
+
