@@ -6,7 +6,7 @@ The idea is simple: before using a wire in another project, I want to check if i
 
 I started with a basic continuity test. Then I added a **16x2 LCD**, **two LEDs**, and **two buttons** so I can use it without opening the Arduino Serial Monitor every time.
 
-**Important:** This tester is for disconnected, unpowered wires only. Never connect it to a powered circuit, a battery, or mains electricity.
+> **Important:** This tester is for **disconnected, unpowered wires only**. Never connect it to a powered circuit, a battery, or mains electricity.
 
 ## What it can do
 
@@ -130,20 +130,85 @@ The TEST button does not turn the tester off. It just starts another measurement
 
 ## Demo videos
 
-I want to show every case with a short video: the wiring, the button press, the LCD message and the LED.
+I want to show how MiniCableLab reacts to each wiring problem. Each short video will show the test connections, the button press, the LCD result, and the LED.
 
-| Demo | What I will do | Expected LCD message | Video |
-| --- | --- | --- | --- |
-| 01 | Test one working wire | `SINGLE: ALL GOOD` | To record |
-| 02 | Disconnect the single wire | `SINGLE: OPEN` | To record |
-| 03 | Connect both wires correctly | `ALL GOOD !` | To record |
-| 04 | Disconnect D2 → D6 | `D2-D6 CUT` | To record |
-| 05 | Disconnect D3 → D7 | `D3-D7 CUT` | To record |
-| 06 | Disconnect both wires | `BOTH CABLES CUT` | To record |
-| 07 | Swap the destinations of the two wires | `INVERTED CABLE` | To record |
-| 08 | Simulate a short between the two test conductors | `SHORT CIRCUIT` | To record |
+**How to add a video:** On GitHub, open `README.md` and click the pencil icon to edit it. Find the matching demo below. Drag your `.mp4` video into the editor, then replace the `<!-- VIDEO ... -->` comment with the **GitHub-generated video URL**, on its own line. Do not wrap the URL in `[Watch video](...)`. GitHub should display it as a video player in the README. Videos are not uploaded yet.
 
-I will add the actual links after filming and checking the results. The short-circuit simulation must be wired **with the USB disconnected**, and only on the unpowered test connections.
+### 01. Single wire - All good
+
+**Test:** Connect one working wire between D2 and D6, select `1 WIRE`, and press TEST.  
+**Expected LCD:** `SINGLE: ALL GOOD`  
+**LED:** Green.
+
+<!-- VIDEO 01: Replace this comment with the GitHub-generated video URL. -->
+
+### 02. Single wire - Open circuit
+
+**Test:** Disconnect the wire between D2 and D6, select `1 WIRE`, and press TEST.  
+**Expected LCD:** `SINGLE: OPEN`  
+**LED:** Red.
+
+<!-- VIDEO 02: Replace this comment with the GitHub-generated video URL. -->
+
+### 03. Two wires - All good
+
+**Test:** Connect D2 to D6 and D3 to D7, select `2 WIRES`, and press TEST.  
+**Expected LCD:** `ALL GOOD !`  
+**LED:** Green.
+
+<!-- VIDEO 03: Replace this comment with the GitHub-generated video URL. -->
+
+### 04. D2 to D6 - Open circuit
+
+**Test:** Keep D3 to D7 connected, but disconnect D2 to D6. Press TEST in `2 WIRES` mode.  
+**Expected LCD:** `D2-D6 CUT`  
+**LED:** Red.
+
+<!-- VIDEO 04: Replace this comment with the GitHub-generated video URL. -->
+
+### 05. D3 to D7 - Open circuit
+
+**Test:** Keep D2 to D6 connected, but disconnect D3 to D7. Press TEST in `2 WIRES` mode.  
+**Expected LCD:** `D3-D7 CUT`  
+**LED:** Red.
+
+<!-- VIDEO 05: Replace this comment with the GitHub-generated video URL. -->
+
+### 06. Both wires - Open circuit
+
+**Test:** Disconnect both test wires. Press TEST in `2 WIRES` mode.  
+**Expected LCD:** `BOTH CABLES CUT`  
+**LED:** Red.
+
+<!-- VIDEO 06: Replace this comment with the GitHub-generated video URL. -->
+
+### 07. Inverted connections
+
+**Test:** Cross the destinations: D2 to D7 and D3 to D6. Press TEST in `2 WIRES` mode.  
+**Expected LCD:** `INVERTED CABLE`  
+**LED:** Red.
+
+<!-- VIDEO 07: Replace this comment with the GitHub-generated video URL. -->
+
+### 08. Possible short circuit
+
+**Test:** With the Arduino unplugged, connect D2 to D6 and D3 to D7, then add a temporary wire between the D6 and D7 test points to simulate an unwanted connection. Reconnect power and press TEST in `2 WIRES` mode.  
+**Expected LCD:** `SHORT CIRCUIT`  
+**LED:** Red.
+
+<!-- VIDEO 08: Replace this comment with the GitHub-generated video URL. -->
+
+### 09. Other fault (optional)
+
+**Test:** Reproduce an unexpected connection that does not match the other diagnoses, if I find one that is reliable and safe to demonstrate.  
+**Expected LCD:** `OTHER FAULT`  
+**LED:** Red.
+
+<!-- VIDEO 09: Replace this comment with the GitHub-generated video URL, or remove this section if not needed. -->
+
+> **Safety:** I always unplug the Arduino USB cable before changing test connections. I only test passive, unpowered cables. I never short the 5V and GND power pins.
+>
+> **Limitations:** `CUT` means missing continuity, not proof of a physically broken conductor. `SHORT CIRCUIT` means a possible short or unexpected electrical path; different wiring faults can sometimes produce the same readings.
 
 ## Project files
 
@@ -151,12 +216,12 @@ I will add the actual links after filming and checking the results. The short-ci
 MiniCableLab/
 ├── README.md
 ├── MiniCableLab_v1.ino
-├── images/
-│   ├── prototype.jpg
-│   └── wiring.jpg
-└── videos/
-    └── (demo videos will be added here)
+└── images/
+    ├── prototype.jpg
+    └── wiring.jpg
 ```
+
+The pictures have not been added yet. Demo videos will be uploaded as GitHub attachments and embedded in this README using their generated URLs, so a `videos/` folder is not required.
 
 ## What I learned
 
@@ -172,7 +237,9 @@ This project helped me practice:
 
 - Make the test connectors easier to use and label them properly
 - Improve the LCD contrast
+- Add photos, wiring diagrams, and embedded demo videos
 - Make the code easier to extend
 - Test 3, 4 or more conductors later
 
 **Status:** Working breadboard prototype. The two modes, buttons, LCD and LEDs are working. I still want to document every fault with a video and improve the physical connectors.
+
