@@ -132,8 +132,6 @@ The TEST button does not turn the tester off. It just starts another measurement
 
 I want to show how MiniCableLab reacts to each wiring problem. Each short video will show the test connections, the button press, the LCD result, and the LED.
 
-**How to add a video:** On GitHub, open `README.md` and click the pencil icon to edit it. Find the matching demo below. Drag your `.mp4` video into the editor, then replace the `<!-- VIDEO ... -->` comment with the **GitHub-generated video URL**, on its own line. Do not wrap the URL in `[Watch video](...)`. GitHub should display it as a video player in the README. Videos are not uploaded yet.
-
 ### 01. Single wire - All good
 
 **Test:** Connect one working wire between D2 and D6, select `1 WIRE`, and press TEST.  
