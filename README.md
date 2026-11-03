@@ -121,61 +121,69 @@ This lets the program detect:
 
 The following visuals explain each test result.
 
-**Important note:** the schematic visuals below were **generated with ChatGPT** based on my MiniCableLab project, to make the README cleaner and easier to read.
+<table>
+  <tr>
+    <td align="center">
+      <h3>01 — Two Wires All Good</h3>
+      <p>Both conductors are correctly connected.</p>
+      <img src="images/diagrams/All_good.png" alt="Two wires all good" width="320">
+    </td>
+    <td align="center">
+      <h3>02 — Single Wire OK</h3>
+      <p>The wire has continuity between <b>D2</b> and <b>D6</b>.</p>
+      <img src="images/diagrams/Single_ok.png" alt="Single connections ok" width="320">
+    </td>
+  </tr>
 
-### 01 — Two Wires All Good
+  <tr>
+    <td align="center">
+      <h3>03 — Single Wire Open</h3>
+      <p>No continuity is detected between <b>D2</b> and <b>D6</b>.</p>
+      <img src="images/diagrams/Single_open.png" alt="Single connections open" width="320">
+    </td>
+    <td align="center">
+      <h3>04 — D2-D6 Cut</h3>
+      <p>The connection between <b>D2</b> and <b>D6</b> is open.</p>
+      <img src="images/diagrams/D2_D6_Cut.png" alt="D2 and D6 Cut" width="320">
+    </td>
+  </tr>
 
-Both conductors are correctly connected.
+  <tr>
+    <td align="center">
+      <h3>05 — D3-D7 Cut</h3>
+      <p>The connection between <b>D3</b> and <b>D7</b> is open.</p>
+      <img src="images/diagrams/D3_D7_Cut.png" alt="D3 and D7 Cut" width="320">
+    </td>
+    <td align="center">
+      <h3>06 — Both Cables Cut</h3>
+      <p>No continuity is detected on either connection.</p>
+      <img src="images/diagrams/Both_Cut.png" alt="Both connections cut" width="320">
+    </td>
+  </tr>
 
-<img src="images/diagrams/All_good.png" alt="Two wires all good" width="450">
-
-### 02 — Single Wire OK
-
-The wire has continuity between **D2** and **D6**.
-
-<img src="images/diagrams/Single_ok.png" alt="Single connections ok" width="450">
-
-### 03 — Single Wire Open
-
-No continuity is detected between **D2** and **D6**.
-
-<img src="images/diagrams/Single_open.png" alt="Single connections open" width="450">
-
-### 04 — D2-D6 Cut
-
-The connection between **D2** and **D6** is open.
-
-<img src="images/diagrams/D2_D6_Cut.png" alt="D2 and D6 Cut" width="450">
-
-### 05 — D3-D7 Cut
-
-The connection between **D3** and **D7** is open.
-
-<img src="images/diagrams/D3_D7_Cut.png" alt="D3 and D7 Cut" width="450">
-
-### 06 — Both Cables Cut
-
-No continuity is detected on either connection.
-
-<img src="images/diagrams/Both_Cut.png" alt="Both connections cut" width="450">
-
-### 07 — Inverted Connections
-
-The two conductors are connected to the wrong inputs.
-
-<img src="images/diagrams/Inverted.png" alt="Inverted connections" width="450">
-
-### 08 — Short Circuit
-
-An unexpected connection is detected between the two conductors.
-
-<img src="images/diagrams/Short_circuit.png" alt="Short circuit" width="450">
+  <tr>
+    <td align="center">
+      <h3>07 — Inverted Connections</h3>
+      <p>The two conductors are connected to the wrong inputs.</p>
+      <img src="images/diagrams/Inverted.png" alt="Inverted connections" width="320">
+    </td>
+    <td align="center">
+      <h3>08 — Short Circuit</h3>
+      <p>An unexpected connection is detected between the two conductors.</p>
+      <img src="images/diagrams/Short_circuit.png" alt="Short circuit" width="320">
+    </td>
+  </tr>
+</table>
 
 ### 09 — Other Fault
 
 The readings do not match the expected cases.
 
-<img src="images/diagrams/Other_fault.png" alt="Other fault" width="450">
+<p align="center">
+  <img src="images/diagrams/Other_fault.png" alt="Other fault" width="320">
+</p>
+
+**Important note:** the schematic visuals above were **generated with ChatGPT** based on my project, to make the README cleaner and easier to read.
 
 ---
 
