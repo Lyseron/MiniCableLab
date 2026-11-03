@@ -23,9 +23,10 @@ At the beginning of the README, I want to show three real photos of the prototyp
 
 <table>
   <tr>
-    <td align="center"><img src="images/overview/lcd-button.jpg" alt="MiniCableLab prototype overview" width="300"><br><sub>Prototype overview</sub></td>
-    <td align="center"><img src="images/overview/full-prototype.jpg" alt="MiniCableLab test wires" width="300"><br><sub>Test wires / connections</sub></td>
-    <td align="center"><img src="images/overview/wires.jpg" alt="MiniCableLab LCD and buttons" width="300"><br><sub>LCD and buttons</sub></td>
+    <td align="center"><img src="images/overview/lcd-button.jpg" alt="MiniCableLab LCD and buttons" width="300"><br><sub>LCD and buttons</sub></td>
+    <td align="center"><img src="images/overview/full-prototype.jpg" alt="MiniCableLab prototype overview" width="300"><br><sub>Prototype overview</sub></td>
+    <td align="center"><img src="images/overview/wires.jpg" alt="MiniCableLab test wires" width="300"><br><sub>Test wires / connections</sub></td>
+    
   </tr>
 </table>
 
@@ -126,55 +127,55 @@ The following visuals explain each test result.
 
 Both conductors are correctly connected.
 
-![Two wires all good](images/diagrams/All_good.png)
+<img src="images/diagrams/All_good.png" alt="Two wires all good" width="450">
 
 ### 02 — Single Wire OK
 
 The wire has continuity between **D2** and **D6**.
 
-![Single wire OK](images/diagrams/Single_ok.png)
+<img src="images/diagrams/Single_ok.png" alt="Single connections ok" width="450">
 
 ### 03 — Single Wire Open
 
 No continuity is detected between **D2** and **D6**.
 
-![Single wire open](images/diagrams/Single_open.png)
+<img src="images/diagrams/Single_open.png" alt="Single connections open" width="450">
 
 ### 04 — D2-D6 Cut
 
 The connection between **D2** and **D6** is open.
 
-![D2-D6 cut](images/diagrams/D2_D6_Cut.png)
+<img src="images/diagrams/D2_D6_Cut.png" alt="D2 and D6 Cut" width="450">
 
 ### 05 — D3-D7 Cut
 
 The connection between **D3** and **D7** is open.
 
-![D3-D7 cut](images/diagrams/D3_d7_Cut.png)
+<img src="images/diagrams/D3_D7_Cut.png" alt="D3 and D7 Cut" width="450">
 
 ### 06 — Both Cables Cut
 
 No continuity is detected on either connection.
 
-![Both cables cut](images/diagrams/Both_Cut.png)
+<img src="images/diagrams/Both_Cut.png" alt="Both connections cut" width="450">
 
 ### 07 — Inverted Connections
 
 The two conductors are connected to the wrong inputs.
 
-![Inverted cable](images/diagrams/Inverted.png)
+<img src="images/diagrams/Inverted.png" alt="Inverted connections" width="450">
 
 ### 08 — Short Circuit
 
 An unexpected connection is detected between the two conductors.
 
-![Short circuit](images/diagrams/Short_circuit.png)
+<img src="images/diagrams/Short_circuit.png" alt="Short circuit" width="450">
 
 ### 09 — Other Fault
 
 The readings do not match the expected cases.
 
-![Other fault](images/diagrams/Other_fault.png)
+<img src="images/diagrams/Other_fault.png" alt="Other fault" width="450">
 
 ---
 
