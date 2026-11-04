@@ -65,69 +65,66 @@ The result is shown on:
 
 ---
 
-
 <h2>Pin Configuration & Circuit Diagram</h2>
 
-<table>
+<div align="center">
+
+<table align="center">
   <tr>
-    <td valign="top" width="45%">
+    <th align="center">Circuit Diagram</th>
+    <th align="center">Pin</th>
+    <th align="center">Function</th>
+  </tr>
 
-      <h3>Pin Configuration</h3>
-
-      <table>
-        <tr><th>Pin</th><th>Function</th></tr>
-        <tr><td>D2</td><td>First test output</td></tr>
-        <tr><td>D3</td><td>Second test output</td></tr>
-        <tr><td>D6</td><td>First test input</td></tr>
-        <tr><td>D7</td><td>Second test input</td></tr>
-        <tr><td>D5</td><td>Green LED</td></tr>
-        <tr><td>D4</td><td>Red LED</td></tr>
-        <tr><td>D10</td><td>TEST button</td></tr>
-        <tr><td>D11</td><td>MODE button</td></tr>
-        <tr><td>D8</td><td>LCD RS</td></tr>
-        <tr><td>D9</td><td>LCD E</td></tr>
-        <tr><td>A0</td><td>LCD D4</td></tr>
-        <tr><td>A1</td><td>LCD D5</td></tr>
-        <tr><td>A2</td><td>LCD D6</td></tr>
-        <tr><td>A3</td><td>LCD D7</td></tr>
-      </table>
-
-      <h4>LCD Power</h4>
-
-      <p>
-        VSS → GND<br>
-        VDD → 5V<br>
-        VO → GND<br>
-        RW → GND<br>
-        Backlight → Resistor
-      </p>
-
-      <p>
-        D6 and D7 use INPUT_PULLUP.<br>
-        D2 and D3 use 1 kΩ protection resistors.
-      </p>
-
-    </td>
-
-    <td valign="top" align="center" width="55%">
-
-      <h3>Circuit Diagram</h3>
-
+  <tr>
+    <td rowspan="14" align="center" valign="middle">
       <img
-        src="images/wiring-diagram.png"
-        alt="MiniCableLab complete circuit diagram"
-        width="550"
+        src="images/diagrams/circuit_image.png"
+        alt="MiniCableLab circuit diagram"
+        width="700"
       >
-
-      <p>
+      <p align="center">
         <sub>MiniCableLab v1 - Wiring diagram</sub>
       </p>
-
     </td>
+    <td align="center">D2</td>
+    <td>First test output</td>
   </tr>
+
+  <tr><td align="center">D3</td><td>Second test output</td></tr>
+  <tr><td align="center">D6</td><td>First test input</td></tr>
+  <tr><td align="center">D7</td><td>Second test input</td></tr>
+  <tr><td align="center">D5</td><td>Green LED</td></tr>
+  <tr><td align="center">D4</td><td>Red LED</td></tr>
+  <tr><td align="center">D10</td><td>TEST button</td></tr>
+  <tr><td align="center">D11</td><td>MODE button</td></tr>
+  <tr><td align="center">D8</td><td>LCD RS</td></tr>
+  <tr><td align="center">D9</td><td>LCD E</td></tr>
+  <tr><td align="center">A0</td><td>LCD D4</td></tr>
+  <tr><td align="center">A1</td><td>LCD D5</td></tr>
+  <tr><td align="center">A2</td><td>LCD D6</td></tr>
+  <tr><td align="center">A3</td><td>LCD D7</td></tr>
+
 </table>
 
+</div>
+
+<h3>LCD Power</h3>
+
+- VSS → GND
+- VDD → 5V
+- VO → GND
+- RW → GND
+- Backlight → Current-limiting resistor
+
+**Notes:**
+- D6 and D7 use `INPUT_PULLUP`.
+- D2 and D3 use 1 kΩ protection resistors.
+- TEST and MODE buttons use `INPUT_PULLUP`.
+- Both LEDs use 1 kΩ resistors.
+
 ---
+
 
 ## How it works
 
