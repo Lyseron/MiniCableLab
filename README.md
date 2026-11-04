@@ -23,7 +23,7 @@ So now I can use it like a real small tool, not just a breadboard test.
   <tr>
     <td align="center"><img src="images/overview/lcd-button.jpg" alt="MiniCableLab LCD and buttons" width="300"><br><sub>LCD and buttons</sub></td>
     <td align="center"><img src="images/overview/full_prototype.jpg" alt="MiniCableLab prototype overview" width="300"><br><sub>Prototype overview</sub></td>
-    <td align="center"><img src="images/overview/wires.jpg" alt="MiniCableLab test wires" width="300"><br><sub>Test wires / connections</sub></td>
+</td>
     
   </tr>
 </table>
