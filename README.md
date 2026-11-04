@@ -65,32 +65,67 @@ The result is shown on:
 
 ---
 
-## Pin configuration
 
-| Pin | Function |
-| --- | --- |
-| D2 | First test output |
-| D3 | Second test output |
-| D6 | First test input (`INPUT_PULLUP`) |
-| D7 | Second test input (`INPUT_PULLUP`) |
-| D5 | Green LED |
-| D4 | Red LED |
-| D10 | TEST button |
-| D11 | MODE button |
-| D8 | LCD RS |
-| D9 | LCD E |
-| A0 | LCD D4 |
-| A1 | LCD D5 |
-| A2 | LCD D6 |
-| A3 | LCD D7 |
+<h2>Pin Configuration & Circuit Diagram</h2>
 
-LCD power:
+<table>
+  <tr>
+    <td valign="top" width="45%">
 
-- `VSS` → GND
-- `VDD` → 5V
-- `VO` → GND (fixed contrast for now)
-- `RW` → GND
-- LCD backlight through a resistor
+      <h3>Pin Configuration</h3>
+
+      <table>
+        <tr><th>Pin</th><th>Function</th></tr>
+        <tr><td>D2</td><td>First test output</td></tr>
+        <tr><td>D3</td><td>Second test output</td></tr>
+        <tr><td>D6</td><td>First test input</td></tr>
+        <tr><td>D7</td><td>Second test input</td></tr>
+        <tr><td>D5</td><td>Green LED</td></tr>
+        <tr><td>D4</td><td>Red LED</td></tr>
+        <tr><td>D10</td><td>TEST button</td></tr>
+        <tr><td>D11</td><td>MODE button</td></tr>
+        <tr><td>D8</td><td>LCD RS</td></tr>
+        <tr><td>D9</td><td>LCD E</td></tr>
+        <tr><td>A0</td><td>LCD D4</td></tr>
+        <tr><td>A1</td><td>LCD D5</td></tr>
+        <tr><td>A2</td><td>LCD D6</td></tr>
+        <tr><td>A3</td><td>LCD D7</td></tr>
+      </table>
+
+      <h4>LCD Power</h4>
+
+      <p>
+        VSS → GND<br>
+        VDD → 5V<br>
+        VO → GND<br>
+        RW → GND<br>
+        Backlight → Resistor
+      </p>
+
+      <p>
+        D6 and D7 use INPUT_PULLUP.<br>
+        D2 and D3 use 1 kΩ protection resistors.
+      </p>
+
+    </td>
+
+    <td valign="top" align="center" width="55%">
+
+      <h3>Circuit Diagram</h3>
+
+      <img
+        src="images/wiring-diagram.png"
+        alt="MiniCableLab complete circuit diagram"
+        width="550"
+      >
+
+      <p>
+        <sub>MiniCableLab v1 - Wiring diagram</sub>
+      </p>
+
+    </td>
+  </tr>
+</table>
 
 ---
 
